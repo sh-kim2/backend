@@ -4,10 +4,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
-import com.scalablescripts.auth.data.PasswordRecovery;
-import com.scalablescripts.auth.data.Token;
-import com.scalablescripts.auth.data.User;
-import com.scalablescripts.auth.data.UserRepo;
+import com.scalablescripts.auth.data.*;
 import com.scalablescripts.auth.error.*;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -16,15 +13,14 @@ import dev.samstevens.totp.code.CodeVerifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.relational.core.conversion.DbActionExecutionException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -231,4 +227,7 @@ public class AuthService {
 
         return login;
     }
+
+
+
 }

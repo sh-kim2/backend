@@ -1,8 +1,11 @@
-package com.scalablescripts.auth;
+package com.scalablescripts.auth.controller;
 
+import com.scalablescripts.auth.data.Cart;
+import com.scalablescripts.auth.data.Item;
 import com.scalablescripts.auth.data.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scalablescripts.auth.service.AuthService;
+import com.scalablescripts.auth.service.Jwt;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,11 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.List;
 
 
 @RestController
@@ -176,4 +184,6 @@ public class AuthController {
 
         return new GoogleOAuth2Response(login.getAccessToken().getToken());
     }
+
+
 }

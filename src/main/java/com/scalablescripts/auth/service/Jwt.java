@@ -31,6 +31,7 @@ public class Jwt {
         this.userId = userId;
     }
 
+    /** 액세스, 로그인할때 사용 */
     public static Jwt of(Long userId, Long validityInMinutes, String secretKey) {
         var issueDate = Instant.now();
         //SecretKey keys = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
@@ -49,6 +50,7 @@ public class Jwt {
         );
     }
 
+    /** 로그아웃, 리플레쉬 할때 사용 */
     public static Jwt from(String token, String accessTokenSecret) {
         var claims = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(accessTokenSecret.getBytes(StandardCharsets.UTF_8)))

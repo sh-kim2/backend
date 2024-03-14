@@ -31,3 +31,31 @@ create table if not exists password_recovery
 alter table if exists user_tbl
     add column if not exists tfa_secret varchar(255) default '';
 
+create table if not exists items
+(
+    id           identity     not null,
+    name         varchar(50)  not null,
+    img_path     varchar(100) null,
+    price        int          null,
+    discount_per int          null
+);
+
+create table if not exists carts
+(
+    id           identity     not null,
+    user_tbl     BIGINT       NOT NULL,
+    items        BIGINT       NOT NULL,
+    constraint fk_carts_user_tbl foreign key (USER_TBL) references user_tbl (id),
+    constraint fk_carts_items foreign key (items) references items (id)
+);
+
+create table if not exists orders
+(
+    id           identity     not null,
+    user_tbl     BIGINT       NOT NULL,
+    name        varchar(50)  not null,
+    address     varchar(500) not null,
+    payment     varchar(10)  not null,
+    card_number varchar(16)  null,
+    item_list       varchar(500) not null
+);
